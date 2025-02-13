@@ -94,6 +94,7 @@
             this.btLogin.TabIndex = 6;
             this.btLogin.Text = "เข้าใช้งานระบบ";
             this.btLogin.UseVisualStyleBackColor = true;
+            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // lbToFrmRegister
             // 

@@ -197,6 +197,7 @@
             this.tsbtCancel.Size = new System.Drawing.Size(126, 20);
             this.tsbtCancel.Text = "ยกเลิก";
             this.tsbtCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsbtCancel.Click += new System.EventHandler(this.tsbtCancel_Click);
             // 
             // toolStripLabel1
             // 
@@ -218,6 +219,7 @@
             this.tsbtToFrmLogin.Size = new System.Drawing.Size(126, 20);
             this.tsbtToFrmLogin.Text = "เข้าใช้งานระบบ";
             this.tsbtToFrmLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsbtToFrmLogin.Click += new System.EventHandler(this.tsbtToFrmLogin_Click);
             // 
             // cbConfirm
             // 

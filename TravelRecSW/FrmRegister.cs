@@ -88,7 +88,7 @@ namespace TravelRecSW
             else if (tbTravellerPassword.Text.Trim() != tbTravellerPasswordConfirm.Text.Trim())
             {
                 ShareInfo.showWarningMSG("รหัสและยืนยันรหัสไม่ตรงกัน");
-            }else if(travellerImage == null)
+            } else if (travellerImage == null)
             {
                 ShareInfo.showWarningMSG("กรุณาเลือกรูปภาพ");
             }
@@ -98,8 +98,71 @@ namespace TravelRecSW
             }
             else
             {
+                //ติดต่อฐานข้อมูล
+                SqlConnection conn = new SqlConnection(ShareInfo.connStr);
+                if (conn.State == ConnectionState.Open) {
+                    conn.Close();
+                }
+                conn.Open();
 
+                //คำสั่ง SQL
+                string strSql = "INSERT INTO traveller_tb "+
+                    "(travellerFullname, travellerEmail, travellerPassword, travellerImage)" +
+                    "VALUES "+
+                    "(@travellerFullname, @travellerEmail, @travellerPassword, @travellerImage)";
+
+                //สร้าง Sql Transaction และ Command
+                SqlTransaction sqlTransaction = conn.BeginTransaction();
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = conn;
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandText = strSql;
+                sqlCommand.Transaction = sqlTransaction;
+
+                //Bind param เพื่อกำหนดข้อมูลให้กับ SQL Parameter
+                sqlCommand.Parameters.AddWithValue("@travellerFullname", tbTravellerFullname.Text.Trim());
+                sqlCommand.Parameters.AddWithValue("@travellerEmail", tbTravellerEmail.Text.Trim());
+                sqlCommand.Parameters.AddWithValue("@travellerPassword", tbTravellerPassword.Text.Trim());
+                sqlCommand.Parameters.AddWithValue("@travellerImage", travellerImage);
+
+                //Execute SQL Command
+                try
+                {
+                    sqlCommand.ExecuteNonQuery();
+                    sqlTransaction.Commit();
+                    conn.Close();
+
+                    //เมื่อบันทึกสำเร็จ แสดง MessageBox แจ้งผลการลงทะเบียน และเปิดหน้า Login
+                    MessageBox.Show("ลงทะเบียนสำเร็จ", "ผลการลงทะเบียน", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmLogin frmLogin = new FrmLogin();
+                    frmLogin.Show();
+                    Hide();
+                }
+                catch (Exception ex)
+                {
+                    sqlTransaction.Rollback();
+                    conn.Close();
+                    ShareInfo.showWarningMSG("เกิดข้อผิดพลาดในการบันทึกข้อมูล Error:" + ex.Message);
+                }
             }
+        }
+
+        private void tsbtCancel_Click(object sender, EventArgs e)
+        {
+            pbTravellerImage.Image = Properties.Resources.profile;
+            travellerImage = null;
+            tbTravellerFullname.Clear();
+            tbTravellerEmail.Clear();
+            tbTravellerPassword.Clear();
+            tbTravellerPasswordConfirm.Clear();
+            cbConfirm.Checked = false;
+        }
+
+        private void tsbtToFrmLogin_Click(object sender, EventArgs e)
+        {
+            FrmLogin frmLogin = new FrmLogin();
+            frmLogin.Show();
+            Hide();
         }
     }
 }
