@@ -20,6 +20,6 @@ namespace TravelRecSW
         public static string travellerFullname;
         public static string travellerEmail;
         public static string travellerPassword;
-        public static byte[] travelImage;
+        public static byte[] travellerImage;
     }
 }

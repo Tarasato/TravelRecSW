@@ -83,6 +83,7 @@
             this.tsbtSave.Size = new System.Drawing.Size(126, 20);
             this.tsbtSave.Text = "บันทึก";
             this.tsbtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsbtSave.Click += new System.EventHandler(this.tsbtSave_Click);
             // 
             // tsbtCancel
             // 
@@ -235,6 +236,7 @@
             this.Name = "FrmTravelEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "แก้ไขการเดินทาง - Travel Rec SW V.1.0";
+            this.Load += new System.EventHandler(this.FrmTravelEdit_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);

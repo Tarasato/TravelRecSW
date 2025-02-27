@@ -76,6 +76,7 @@
             this.tbTravellerEmail.Name = "tbTravellerEmail";
             this.tbTravellerEmail.Size = new System.Drawing.Size(188, 20);
             this.tbTravellerEmail.TabIndex = 4;
+            this.tbTravellerEmail.Text = "taramiratsu.xato@gmail.com";
             // 
             // tbTravellerPassword
             // 
@@ -84,6 +85,7 @@
             this.tbTravellerPassword.PasswordChar = '*';
             this.tbTravellerPassword.Size = new System.Drawing.Size(188, 20);
             this.tbTravellerPassword.TabIndex = 5;
+            this.tbTravellerPassword.Text = "123456";
             // 
             // btLogin
             // 

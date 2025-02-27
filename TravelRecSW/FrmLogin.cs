@@ -78,7 +78,7 @@ namespace TravelRecSW
                     ShareInfo.travellerFullname = dt.Rows[0]["travellerFullname"].ToString();
                     ShareInfo.travellerEmail = dt.Rows[0]["travellerEmail"].ToString();
                     ShareInfo.travellerPassword = dt.Rows[0]["travellerPassword"].ToString();
-                    ShareInfo.travelImage = (byte[])dt.Rows[0]["travellerImage"];
+                    ShareInfo.travellerImage = (byte[])dt.Rows[0]["travellerImage"];
 
                     FrmTravelOpt frmTravelOption = new FrmTravelOpt();
                     frmTravelOption.Show();
